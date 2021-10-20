@@ -30,10 +30,7 @@ const MoviesList: React.FC = () => {
 	const [data, setData] = useState<IData[]>([]);
 
 	const toggleSort = () => {
-		let newData;
-		isAscending
-			? (newData = _.orderBy(data, ["episode_number"], ["desc"]))
-			: (newData = _.orderBy(data, ["episode_number"], "asc"));
+		let newData = _.orderBy(data, "episode_number", (isAscending ? "desc" : "asc"));
 		console.log(newData);
 		console.log(data);
 		setData(newData);
