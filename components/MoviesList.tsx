@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import _ from "lodash";
+
 import {
 	ActivityIndicator,
 	FlatList,
@@ -28,17 +30,12 @@ const MoviesList: React.FC = () => {
 	const [data, setData] = useState<IData[]>([]);
 
 	const toggleSort = () => {
-		let newData = [...data];
-		newData.sort((a, b) =>
-			isAscending
-				? a.episode_number > b.episode_number
-					? -1
-					: 1
-				: b.episode_number > a.episode_number
-				? -1
-				: 1
-		);
-
+		let newData;
+		isAscending
+			? (newData = _.orderBy(data, ["episode_number"], ["desc"]))
+			: (newData = _.orderBy(data, ["episode_number"], "asc"));
+		console.log(newData);
+		console.log(data);
 		setData(newData);
 		setAscending(!isAscending);
 	};
