@@ -1,8 +1,15 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from 'react-native'
+import { IData } from "./MoviesList"
 
-export default function Movie({url, movie }) {
-    const imageUri = `${url}public/images/${movie.poster}`
+interface IMovie {
+	url: string
+	movie: IData
+}
+
+
+const Movie:React.FC<IMovie> = ({url, movie }) => {
+    const imageUri:string = `${url}public/images/${movie.poster}`
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{movie.title}</Text>
@@ -11,6 +18,8 @@ export default function Movie({url, movie }) {
         </View>
     )
 }
+
+export default Movie
 
 const styles = StyleSheet.create({
 	container: {
